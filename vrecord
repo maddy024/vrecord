@@ -668,9 +668,13 @@ _lookup_choice(){
             CODECNAME="JPEG2000"
             MIDDLEOPTIONS+=(-c:v libopenjpeg)
             SUFFIX="_j2k" ;;
-        "ProRes")
+        "ProRes (Standard)")
             CODECNAME="Apple ProRes 422"
-            MIDDLEOPTIONS+=(-c:v prores_ks -flags +ilme+ildct)
+            MIDDLEOPTIONS+=(-c:v prores_ks -flags +ilme+ildct -profile:v 2)
+            SUFFIX="_prores" ;;
+        "ProRes (HQ)")
+            CODECNAME="Apple ProRes 422"
+            MIDDLEOPTIONS+=(-c:v prores_ks -flags +ilme+ildct -profile:v 3)
             SUFFIX="_prores" ;;
         # video pixel format and bit depth
         "10 bit") PIXEL_FORMAT="yuv422p10" ;;
@@ -936,7 +940,7 @@ drawgrid=w=256:h=256:t=1:c=white@0.2"
 VIDEO_INPUT_OPTIONS=("Composite" "SDI" "Component" "S-Video")
 AUDIO_INPUT_OPTIONS=("Analog" "SDI Embedded Audio" "Digital Audio (AES/EBU)")
 CONTAINER_OPTIONS=("QuickTime" "Matroska" "AVI" "MXF")
-VIDEO_CODEC_OPTIONS=("Uncompressed Video" "FFV1 version 3" "JPEG2000" "ProRes" )
+VIDEO_CODEC_OPTIONS=("Uncompressed Video" "FFV1 version 3" "JPEG2000" "ProRes (Standard)" "ProRes (HQ)")
 VIDEO_BITDEPTH_OPTIONS=("10 bit" "8 bit")
 CHANNEL_MAPPING_OPTIONS=("2 Stereo Tracks (Channels 1 & 2 -> 1st Track Stereo, Channels 3 & 4 -> 2nd Track Stereo)" "1 Stereo Track (From Channels 1 & 2)" "1 Stereo Track (From Channels 3 & 4)" "Channel 1 -> 1st Track Mono, Channel 2 -> 2nd Track Mono" "Channel 2 -> 1st Track Mono, Channel 1 -> 2nd Track Mono" "Channel 1 -> Single Track Mono" "Channel 2 -> Single Track Mono")
 TIMECODE_OPTIONS=("none" "rp188vitc" "rp188vitc2" "rp188ltc" "rp188any" "vitc" "vitc2" "serial")
